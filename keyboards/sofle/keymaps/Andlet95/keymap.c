@@ -80,7 +80,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 [_LOWER] = LAYOUT(
   _______,   KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_F5,                         KC_F6,   KC_F7,   KC_F8,   KC_F9,  KC_F10,  KC_F11,
   NO_GRV,  NO_DIAE, XXXXXXX, NO_SCLN, NO_EXLM, XXXXXXX,                       XXXXXXX,   NO_AT, NO_COLN, XXXXXXX, XXXXXXX,  KC_F12,
-  NO_AMPR, NO_LABK, NO_LBRC, NO_LCBR, NO_LPRN,NO_DQUOT,                       NO_QUOT, NO_RPRN, NO_RCBR, NO_RBRC, NO_RABK, NO_PIPE,
+  NO_AMPR, NO_LABK, NO_LBRC, NO_LCBR, NO_LPRN, NO_DQUO,                       NO_QUOT, NO_RPRN, NO_RCBR, NO_RBRC, NO_RABK, NO_PIPE,
   _______, XXXXXXX, NO_QUES, NO_PLUS,  NO_EQL, NO_TILD, _______,     _______, NO_CIRC, NO_ASTR, NO_MINS, NO_UNDS, NO_BSLS, _______,
                 _______, _______, _______, _______, _______,             _______, _______, _______, _______, _______
 ),
@@ -254,7 +254,7 @@ bool oled_task_user(void) {
     oled_write_P(PSTR("\n\n"), false);
 
     led_t led_usb_state = host_keyboard_led_state();
-    oled_write_ln(led_usb_state.caps_lock ? PSTR("CPSLK") : PSTR("     "), true);
+    oled_write_ln(led_usb_state.caps_lock ? PSTR("CPSLK") : PSTR("     "), led_usb_state.caps_lock);
 
     return false;
 }
@@ -262,9 +262,6 @@ bool oled_task_user(void) {
 #ifdef ENCODER_ENABLE
 bool encoder_update_user(uint8_t index, bool clockwise) {
     bool ticks[] = {false, false};
-    if (!encoder_update_user(index, clockwise)) {
-        return false;
-    }
     if (!ticks[index]) {
         ticks[index] = true;
     } else if (index == 0) {
@@ -282,6 +279,6 @@ bool encoder_update_user(uint8_t index, bool clockwise) {
         }
         ticks[index] = false;
     }
-    return true;
+    return false;
 }
 #endif
