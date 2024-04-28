@@ -11,6 +11,8 @@ enum sofle_layers {
     _LOWER,
     _RAISE,
     _ADJUST,
+
+    _GAMING
 };
 
 enum custom_keycodes { /*NO_QWERTY,*/ NO_COLEMAK = QK_USER, KC_PRVWD, KC_NXTWD, KC_LSTRT, KC_LEND };
@@ -106,6 +108,27 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
                 _______, _______, _______, _______, _______,             _______, _______, _______, _______, _______
 ),
 /* ADJUST
+* ,-----------------------------------------.                    ,-----------------------------------------.
+* |      |      |      |      |      |      |                    |      |      |      |      |      |      |
+* |------+------+------+------+------+------|                    |------+------+------+------+------+------|
+* | QK_BOOT|    |      | CLMK |MACWIN|      |                    |   ,  |      |      |      |      |      |
+* |------+------+------+------+------+------|                    |------+------+------+------+------+------|
+* |      |   1  |   2  |   3  |   4  |   5  |-------.    ,-------|   6  |   7  |   8  |   9  |   0  |      |
+* |------+------+------+------+------+------|  MUTE |    |  Mply |------+------+------+------+------+------|
+* |      |      |      |      |      |      |-------|    |-------|   0  |   1  |   2  |   3  |      |      |
+* `-----------------------------------------/       /     \      \-----------------------------------------'
+*            | LGUI | LAlt | LCTR |LOWER | /Enter  /       \Space \  |RAISE | RCTR | RAlt | RGUI |
+*            |      |      |      |      |/       /         \      \ |      |      |      |      |
+*            `-----------------------------------'           '------''---------------------------'
+*/
+[_ADJUST] = LAYOUT(
+  XXXXXXX,XXXXXXX,XXXXXXX,   XXXXXXX, XXXXXXX, XXXXXXX,                       XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
+QK_BOOT,XXXXXXX,TG(_GAMING),NO_COLEMAK,CG_TOGG,XXXXXXX,                       XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
+  XXXXXXX,   NO_1,   NO_2,      NO_3,    NO_4,    NO_5,                          NO_6,    NO_7,    NO_8,    NO_9,    NO_0, XXXXXXX,
+  XXXXXXX,XXXXXXX,XXXXXXX,   XXXXXXX, NO_COMM, XXXXXXX, XXXXXXX,     XXXXXXX, XXXXXXX,  NO_DOT, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
+                _______, _______, _______, _______, _______,             _______, _______, _______, _______, _______
+),
+/* ADJUST
  * ,-----------------------------------------.                    ,-----------------------------------------.
  * |      |      |      |      |      |      |                    |      |      |      |      |      |      |
  * |------+------+------+------+------+------|                    |------+------+------+------+------+------|
@@ -119,13 +142,13 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  *            |      |      |      |      |/       /         \      \ |      |      |      |      |
  *            `-----------------------------------'           '------''---------------------------'
  */
-  [_ADJUST] = LAYOUT(
-  XXXXXXX, XXXXXXX,  XXXXXXX,   XXXXXXX, XXXXXXX, XXXXXXX,                      XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
-  QK_BOOT, XXXXXXX,  XXXXXXX,NO_COLEMAK, CG_TOGG, XXXXXXX,                       NO_DOT,    NO_7,    NO_8,    NO_9, XXXXXXX, XXXXXXX,
-  XXXXXXX, XXXXXXX,  CG_TOGG,   XXXXXXX, XXXXXXX, XXXXXXX,                      NO_COMM,    NO_4,    NO_5,    NO_6, XXXXXXX, XXXXXXX,
-  XXXXXXX, XXXXXXX,  XXXXXXX,   XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,    XXXXXXX,    NO_0,    NO_1,    NO_2,    NO_3, XXXXXXX, XXXXXXX,
-                   _______, _______, _______, _______, _______,            _______, _______, _______, _______, _______
-  )
+  [_GAMING] = LAYOUT(
+   KC_ESC, NO_PIPE,    NO_1,    NO_2,    NO_3,    NO_4,                       XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
+  XXXXXXX,    NO_T,    NO_Q,    NO_W,    NO_E,    NO_R,                        NO_DOT,    NO_7,    NO_8,    NO_9, XXXXXXX, XXXXXXX,
+   KC_TAB,    NO_G,    NO_A,    NO_S,    NO_D,    NO_F,                       NO_COMM,    NO_4,    NO_5,    NO_6, XXXXXXX, XXXXXXX,
+  KC_LSFT, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,        NO_0,    NO_1,    NO_2,    NO_3, XXXXXXX, XXXXXXX, XXXXXXX,
+            _______, _______, _______, _______, _______,              TG(_GAMING), _______, _______, _______, _______
+)
 };
 // clang-format on
 
@@ -220,6 +243,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 }
 #ifdef OLED_ENABLE
 bool oled_task_user(void) {
+    oled_clear();
     oled_write_P(PSTR("\n\n"), false);
     switch (get_highest_layer(layer_state)) {
         case _COLEMAK:
@@ -228,6 +252,13 @@ bool oled_task_user(void) {
         // case _QWERTY:
         //     oled_write_ln_P(PSTR("Qwrt"), false);
         //     break;
+        case _GAMING:
+            char word[6] = "GMING";
+            for (int i = 0; i < 5; i++) {
+                oled_write_ln_P(PSTR(word), i % 2);
+            }
+            return false;
+            break;
         default:
             oled_write_P(PSTR("Mod\n"), false);
             break;
@@ -247,6 +278,8 @@ bool oled_task_user(void) {
             break;
         case _ADJUST:
             oled_write_P(PSTR("Adjst"), false);
+            break;
+        case _GAMING:
             break;
         default:
             oled_write_ln_P(PSTR("Undef"), false);
