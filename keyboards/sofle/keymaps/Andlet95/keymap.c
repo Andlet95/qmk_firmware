@@ -147,7 +147,7 @@ QK_BOOT,XXXXXXX,TG(_GAMING),NO_COLEMAK,CG_TOGG,XXXXXXX,                       XX
   XXXXXXX,    NO_T,    NO_Q,    NO_W,    NO_E,    NO_R,                       XXXXXXX,    NO_U,    NO_I,    NO_O,    NO_P, XXXXXXX,
    KC_TAB,    NO_G,    NO_A,    NO_S,    NO_D,    NO_F,                       XXXXXXX,    NO_H,    NO_J,    NO_K,    NO_L, XXXXXXX,
   KC_LSFT, NO_LABK,    NO_Z,    NO_X,    NO_C,    NO_V, XXXXXXX,     XXXXXXX, XXXXXXX,    NO_B,    NO_N,    NO_M, XXXXXXX, XXXXXXX,
-                _______, _______, _______,    NO_5, _______,              TG(_GAMING), _______, _______, _______, _______
+                _______, _______, _______,    NO_5, _______,         TG(_GAMING),   KC_UP, _______, _______, _______
 )
 };
 // clang-format on
