@@ -30,7 +30,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * |------+------+------+------+------+------|  MUTE |    |  Mply |------+------+------+------+------+------|
  * |LShift|   Z  |   X  |   C  |   D  |   V  |-------|    |-------|   K  |   H  |   ,  |   .  |   /  |RShift|
  * `-----------------------------------------/       /     \      \-----------------------------------------'
- *            | LGUI | LAlt | LCTR |LOWER | /Enter  /       \Space \  |RAISE | Bspc | RAlt | RGUI |
+ *            | LGUI | LAlt | LCTR |LOWER | /Space  /       \Enter \  |RAISE | Bspc | RAlt | RGUI |
  *            |      |      |      |      |/       /         \      \ |      |      |      |      |
  *            `-----------------------------------'           '------''---------------------------'
  */
@@ -53,7 +53,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 // * |------+------+------+------+------+------|  MUTE |    |  Mply |------+------+------+------+------+------|
 // * |LShift|   Z  |   X  |   C  |   V  |   B  |-------|    |-------|   N  |   M  |   ,  |   .  |   /  |RShift|
 // * `-----------------------------------------/       /     \      \-----------------------------------------'
-// *            | LGUI | LAlt | LCTR |LOWER | /Enter  /       \Space \  |RAISE | Bspc | RAlt | RGUI |
+// *            | LGUI | LAlt | LCTR |LOWER | /Space  /       \Enter \  |RAISE | Bspc | RAlt | RGUI |
 // *            |      |      |      |      |/       /         \      \ |      |      |      |      |
 // *            `-----------------------------------'           '------''---------------------------'
 // */
@@ -75,7 +75,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * |------+------+------+------+------+------|  MUTE |    |  Mply |------+------+------+------+------+------|
  * | Shift|   ~  |   @  |   +  |   =  |   #  |-------|    |-------|   %  |   *  |   -  |   _  |   \  | Shift|
  * `-----------------------------------------/       /     \      \-----------------------------------------'
- *            | LGUI | LAlt | LCTR |LOWER | /Enter  /       \Space \  |RAISE | RCTR | RAlt | RGUI |
+ *            | LGUI | LAlt | LCTR |LOWER | /Space  /       \Enter \  |RAISE | RCTR | RAlt | RGUI |
  *            |      |      |      |      |/       /         \      \ |      |      |      |      |
  *            `-----------------------------------'           '------''---------------------------'
  */
@@ -96,7 +96,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * |------+------+------+------+------+------|  MUTE |    |  Mply |------+------+------+------+------+------|
  * |Shift | Undo |  Cut | Copy | Paste|      |-------|    |-------|      | LStr |      | LEnd |      | Shift|
  * `-----------------------------------------/       /     \      \-----------------------------------------'
- *            | LGUI | LAlt | LCTR |LOWER | /Enter  /       \Space \  |RAISE | RCTR | RAlt | RGUI |
+ *            | LGUI | LAlt | LCTR |LOWER | /Space  /       \Enter \  |RAISE | RCTR | RAlt | RGUI |
  *            |      |      |      |      |/       /         \      \ |      |      |      |      |
  *            `-----------------------------------'           '------''---------------------------'
  */
@@ -111,13 +111,13 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 * ,-----------------------------------------.                    ,-----------------------------------------.
 * |      |      |      |      |      |      |                    |      |      |      |      |      |      |
 * |------+------+------+------+------+------|                    |------+------+------+------+------+------|
-* | QK_BOOT|    |      | CLMK |MACWIN|      |                    |   ,  |      |      |      |      |      |
+* | QK_BOOT|    |      | CLMK |MACWIN|      |                    |      |      |      |      |      |      |
 * |------+------+------+------+------+------|                    |------+------+------+------+------+------|
 * |      |   1  |   2  |   3  |   4  |   5  |-------.    ,-------|   6  |   7  |   8  |   9  |   0  |      |
 * |------+------+------+------+------+------|  MUTE |    |  Mply |------+------+------+------+------+------|
-* |      |      |      |      |      |      |-------|    |-------|   0  |   1  |   2  |   3  |      |      |
+* |      |      |      |      |   ,  |      |-------|    |-------|      |   .  |      |      |      |      |
 * `-----------------------------------------/       /     \      \-----------------------------------------'
-*            | LGUI | LAlt | LCTR |LOWER | /Enter  /       \Space \  |RAISE | RCTR | RAlt | RGUI |
+*            | LGUI | LAlt | LCTR |LOWER | /Space  /       \Enter \  |RAISE | RCTR | RAlt | RGUI |
 *            |      |      |      |      |/       /         \      \ |      |      |      |      |
 *            `-----------------------------------'           '------''---------------------------'
 */
@@ -128,26 +128,26 @@ QK_BOOT,XXXXXXX,TG(_GAMING),NO_COLEMAK,CG_TOGG,XXXXXXX,                       XX
   XXXXXXX,XXXXXXX,XXXXXXX,   XXXXXXX, NO_COMM, XXXXXXX, XXXXXXX,     XXXXXXX, XXXXXXX,  NO_DOT, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
                 _______, _______, _______, _______, _______,             _______, _______, _______, _______, _______
 ),
-/* ADJUST
+/* GAMING
  * ,-----------------------------------------.                    ,-----------------------------------------.
- * |      |      |      |      |      |      |                    |      |      |      |      |      |      |
+ * |  ESC |   |  |   1  |   2  |   3  |   4  |                    |      |      |      |      |      |      |
  * |------+------+------+------+------+------|                    |------+------+------+------+------+------|
- * | QK_BOOT|    |      | CLMK |      |      |                    |   ,  |   7  |   8  |   9  |      |      |
+ * |      |   T  |   Q  |   W  |   E  |   R  |                    |   ,  |   7  |   8  |   9  |      |      |
  * |------+------+------+------+------+------|                    |------+------+------+------+------+------|
- * |      |      |MACWIN|      |      |      |-------.    ,-------|   .  |   4  |   5  |   6  |      |      |
+ * |  TAB |   G  |   A  |   S  |   D  |   F  |-------.    ,-------|   .  |   4  |   5  |   6  |      |      |
  * |------+------+------+------+------+------|  MUTE |    |  Mply |------+------+------+------+------+------|
- * |      |      |      |      |      |      |-------|    |-------|   0  |   1  |   2  |   3  |      |      |
+ * | SHFT |   <  |   Z  |   X  |   C  |   V  |-------|    |-------|   0  |   1  |   2  |   3  |      |      |
  * `-----------------------------------------/       /     \      \-----------------------------------------'
- *            | LGUI | LAlt | LCTR |LOWER | /Enter  /       \Space \  |RAISE | RCTR | RAlt | RGUI |
+ *            | LGUI | LAlt | LCTR |   5  | /Space  /       \Enter \  |RAISE | RCTR | RAlt | RGUI |
  *            |      |      |      |      |/       /         \      \ |      |      |      |      |
  *            `-----------------------------------'           '------''---------------------------'
  */
   [_GAMING] = LAYOUT(
    KC_ESC, NO_PIPE,    NO_1,    NO_2,    NO_3,    NO_4,                       XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
-  XXXXXXX,    NO_T,    NO_Q,    NO_W,    NO_E,    NO_R,                        NO_DOT,    NO_7,    NO_8,    NO_9, XXXXXXX, XXXXXXX,
-   KC_TAB,    NO_G,    NO_A,    NO_S,    NO_D,    NO_F,                       NO_COMM,    NO_4,    NO_5,    NO_6, XXXXXXX, XXXXXXX,
-  KC_LSFT, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,        NO_0,    NO_1,    NO_2,    NO_3, XXXXXXX, XXXXXXX, XXXXXXX,
-            _______, _______, _______, _______, _______,              TG(_GAMING), _______, _______, _______, _______
+  XXXXXXX,    NO_T,    NO_Q,    NO_W,    NO_E,    NO_R,                       XXXXXXX,    NO_U,    NO_I,    NO_O,    NO_P, XXXXXXX,
+   KC_TAB,    NO_G,    NO_A,    NO_S,    NO_D,    NO_F,                       XXXXXXX,    NO_H,    NO_J,    NO_K,    NO_L, XXXXXXX,
+  KC_LSFT, NO_LABK,    NO_Z,    NO_X,    NO_C,    NO_V, XXXXXXX,     XXXXXXX, XXXXXXX,    NO_B,    NO_N,    NO_M, XXXXXXX, XXXXXXX,
+                _______, _______, _______,    NO_5, _______,              TG(_GAMING), _______, _______, _______, _______
 )
 };
 // clang-format on
