@@ -123,7 +123,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 */
 [_ADJUST] = LAYOUT(
   XXXXXXX,XXXXXXX,XXXXXXX,   XXXXXXX, XXXXXXX, XXXXXXX,                       XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
-QK_BOOT,XXXXXXX,TG(_GAMING),NO_COLEMAK,CG_TOGG,XXXXXXX,                       XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
+QK_BOOT,XXXXXXX,TG(_GAMING),NO_COLEMAK,CG_TOGG,XXXXXXX,                       XXXXXXX, XXXXXXX, KC_MPRV, KC_MNXT, XXXXXXX, XXXXXXX,
   XXXXXXX,   NO_1,   NO_2,      NO_3,    NO_4,    NO_5,                          NO_6,    NO_7,    NO_8,    NO_9,    NO_0, XXXXXXX,
   XXXXXXX,XXXXXXX,XXXXXXX,   XXXXXXX, NO_COMM, XXXXXXX, XXXXXXX,     XXXXXXX, XXXXXXX,  NO_DOT, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
                 _______, _______, _______, _______, _______,             _______, _______, _______, _______, _______
