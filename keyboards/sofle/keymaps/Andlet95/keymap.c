@@ -154,16 +154,6 @@ QK_BOOT,XXXXXXX,TG(_GAMING),NO_COLEMAK,CG_TOGG,XXXXXXX,                       XX
 
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     switch (keycode) {
-        // case NO_QWERTY:
-        //     if (record->event.pressed) {
-        //         layer_on(_QWERTY);
-        //     }
-        //     return false;
-        // case NO_COLEMAK:
-        //     if (record->event.pressed) {
-        //         layer_off(_QWERTY);
-        //     }
-        //     return false;
         case KC_PRVWD:
             if (record->event.pressed) {
                 if (keymap_config.swap_lctl_lgui) {
@@ -249,45 +239,45 @@ bool oled_task_user(void) {
         case _COLEMAK:
             oled_write_ln_P(PSTR("Qlmk"), false);
             break;
-        // case _QWERTY:
-        //     oled_write_ln_P(PSTR("Qwrt"), false);
-        //     break;
         case _GAMING:
             char word[6] = "GMING";
-            for (int i = 0; i < 5; i++) {
+            for (int i = 0; i < 2; i++) {
                 oled_write_ln_P(PSTR(word), i % 2);
             }
-            return false;
             break;
         default:
             oled_write_P(PSTR("Mod\n"), false);
             break;
     }
-    oled_write_P(PSTR("\n\n"), false);
-    oled_write_ln_P(PSTR("LAYER"), false);
     switch (get_highest_layer(layer_state)) {
-        case _COLEMAK:
-            // case _QWERTY:
-            oled_write_P(PSTR("Base\n"), false);
-            break;
-        case _RAISE:
-            oled_write_P(PSTR("Raise"), false);
-            break;
-        case _LOWER:
-            oled_write_P(PSTR("Lower"), false);
-            break;
-        case _ADJUST:
-            oled_write_P(PSTR("Adjst"), false);
-            break;
         case _GAMING:
             break;
         default:
-            oled_write_ln_P(PSTR("Undef"), false);
-    }
-    oled_write_P(PSTR("\n\n"), false);
+            oled_write_P(PSTR("\n\n"), false);
+            oled_write_ln_P(PSTR("LAYER"), false);
+            switch (get_highest_layer(layer_state)) {
+                case _COLEMAK:
+                    oled_write_P(PSTR("Base\n"), false);
+                    break;
+                case _RAISE:
+                    oled_write_P(PSTR("Raise"), false);
+                    break;
+                case _LOWER:
+                    oled_write_P(PSTR("Lower"), false);
+                    break;
+                case _ADJUST:
+                    oled_write_P(PSTR("Adjst"), false);
+                    break;
+                case _GAMING:
+                    break;
+                default:
+                    oled_write_ln_P(PSTR("Undef"), false);
+            }
+            oled_write_P(PSTR("\n\n"), false);
 
-    led_t led_usb_state = host_keyboard_led_state();
-    oled_write_ln(led_usb_state.caps_lock ? PSTR("CPSLK") : PSTR("     "), led_usb_state.caps_lock);
+            led_t led_usb_state = host_keyboard_led_state();
+            oled_write_ln(led_usb_state.caps_lock ? PSTR("CPSLK") : PSTR("     "), led_usb_state.caps_lock);
+    }
 
     return false;
 }
