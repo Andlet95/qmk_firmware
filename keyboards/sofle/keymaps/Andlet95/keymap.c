@@ -4,9 +4,7 @@
 #include <keymap_norwegian.h>
 
 enum sofle_layers {
-    /* _M_XYZ = Mac Os, _W_XYZ = Win/Linux */
     _COLEMAK,
-    //_QWERTY,
 
     _LOWER,
     _RAISE,
@@ -15,7 +13,7 @@ enum sofle_layers {
     _GAMING
 };
 
-enum custom_keycodes { /*NO_QWERTY,*/ NO_COLEMAK = QK_USER, KC_PRVWD, KC_NXTWD, KC_LSTRT, KC_LEND };
+enum custom_keycodes { NO_COLEMAK = QK_USER, KC_PRVWD, KC_NXTWD, KC_LSTRT, KC_LEND };
 
 // clang-format off
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
@@ -123,9 +121,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 */
 [_ADJUST] = LAYOUT(
   XXXXXXX,XXXXXXX,XXXXXXX,   XXXXXXX, XXXXXXX, XXXXXXX,                       XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
-QK_BOOT,XXXXXXX,TG(_GAMING),NO_COLEMAK,CG_TOGG,XXXXXXX,                       XXXXXXX, XXXXXXX, KC_MPRV, KC_MNXT, XXXXXXX, XXXXXXX,
+QK_BOOT,XXXXXXX,TG(_GAMING),NO_COLEMAK,XXXXXXX,XXXXXXX,                       XXXXXXX, XXXXXXX, KC_MPRV, KC_MNXT, XXXXXXX, XXXXXXX,
   XXXXXXX,   NO_1,   NO_2,      NO_3,    NO_4,    NO_5,                          NO_6,    NO_7,    NO_8,    NO_9,    NO_0, XXXXXXX,
-  XXXXXXX,XXXXXXX,XXXXXXX,   XXXXXXX, NO_COMM, XXXXXXX, XXXXXXX,     XXXXXXX, XXXXXXX,  NO_DOT, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
+  DB_TOGG,XXXXXXX,XXXXXXX,   XXXXXXX, NO_COMM, XXXXXXX, XXXXXXX,     XXXXXXX, XXXXXXX,  NO_DOT, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
                 _______, _______, _______, _______, _______,             _______, _______, _______, _______, _______
 ),
 /* GAMING
@@ -233,7 +231,9 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 }
 #ifdef OLED_ENABLE
 bool oled_task_user(void) {
-    oled_clear();
+    if (!is_keyboard_master()) {
+        return true;
+    }
     oled_write_P(PSTR("\n\n"), false);
     switch (get_highest_layer(layer_state)) {
         case _COLEMAK:
