@@ -44,7 +44,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #endif
 
 #ifndef MATRIX_INPUT_PRESSED_STATE
-#    define MATRIX_INPUT_PRESSED_STATE 0
+#    define MATRIX_INPUT_PRESSED_STATE 1
 #endif
 
 #ifdef DIRECT_PINS
@@ -54,7 +54,7 @@ static SPLIT_MUTABLE pin_t direct_pins[MATRIX_ROWS_PER_HAND][MATRIX_COLS] = DIRE
 static SPLIT_MUTABLE_ROW pin_t row_pins[MATRIX_ROWS_PER_HAND] = MATRIX_ROW_PINS;
 #    endif // MATRIX_ROW_PINS
 #    ifdef MATRIX_COL_PINS
-static SPLIT_MUTABLE_COL pin_t col_pins[MATRIX_COLS]          = MATRIX_COL_PINS;
+static SPLIT_MUTABLE_COL pin_t col_pins[MATRIX_COLS] = MATRIX_COL_PINS;
 #    endif // MATRIX_COL_PINS
 #endif
 
@@ -83,6 +83,12 @@ static inline void gpio_atomic_set_pin_output_high(pin_t pin) {
     ATOMIC_BLOCK_FORCEON {
         gpio_set_pin_output(pin);
         gpio_write_pin_high(pin);
+    }
+}
+
+static inline void gpio_atomic_set_pin_input_low(pin_t pin) {
+    ATOMIC_BLOCK_FORCEON {
+        gpio_set_pin_input_low(pin);
     }
 }
 
@@ -199,7 +205,7 @@ __attribute__((weak)) void matrix_read_cols_on_row(matrix_row_t current_matrix[]
 static bool select_col(uint8_t col) {
     pin_t pin = col_pins[col];
     if (pin != NO_PIN) {
-        gpio_atomic_set_pin_output_low(pin);
+        gpio_atomic_set_pin_output_high(pin);
         return true;
     }
     return false;
@@ -211,7 +217,7 @@ static void unselect_col(uint8_t col) {
 #            ifdef MATRIX_UNSELECT_DRIVE_HIGH
         gpio_atomic_set_pin_output_high(pin);
 #            else
-        gpio_atomic_set_pin_input_high(pin);
+        gpio_atomic_set_pin_output_low(pin);
 #            endif
     }
 }
@@ -226,7 +232,7 @@ __attribute__((weak)) void matrix_init_pins(void) {
     unselect_cols();
     for (uint8_t x = 0; x < MATRIX_ROWS_PER_HAND; x++) {
         if (row_pins[x] != NO_PIN) {
-            gpio_atomic_set_pin_input_high(row_pins[x]);
+            gpio_atomic_set_pin_input_low(row_pins[x]);
         }
     }
 }
