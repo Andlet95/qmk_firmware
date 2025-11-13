@@ -14,7 +14,7 @@
     "usb": {
         "vid": "0xFC32"
     },
-    "diode_direction": "COL2ROW",
+    "diode_direction": "ROW2COL",
     "qmk": {
         "tap_keycode_delay": 10
     },
