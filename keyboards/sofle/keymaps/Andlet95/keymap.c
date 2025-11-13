@@ -86,11 +86,11 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 ),
 /* RAISE
  * ,-----------------------------------------.                    ,-----------------------------------------.
- * |      |      |      |      |      |      |                    |      |      |      |      |      |      |
+ * |      |  F1  |  F2  |  F3  |  F4  |  F5  |                    |  F6  |  F7  |  F8  |  F9  | F10  | F11  |
  * |------+------+------+------+------+------|                    |------+------+------+------+------+------|
- * | Esc  | Ins  | Pscr | Menu |      |      |                    |      | PWrd |  Up  | NWrd | DLine| Bspc |
+ * | Esc  | Ins  | Pscr | Menu |      |      |                    |      | PWrd |  Up  | NWrd |C+Bspc| Bspc |
  * |------+------+------+------+------+------|                    |------+------+------+------+------+------|
- * | Tab  | LAt  | LCtl |LShift|      | Caps |-------.    ,-------|      | Left | Down | Rigth|  Del | Bspc |
+ * | Tab  | LAt  | LCtl |LShift|      | Caps |-------.    ,-------|      | Left | Down | Rigth|C+Del |  Del |
  * |------+------+------+------+------+------|  MUTE |    |  Mply |------+------+------+------+------+------|
  * |Shift | Undo |  Cut | Copy | Paste|      |-------|    |-------|      | LStr |      | LEnd |      | Shift|
  * `-----------------------------------------/       /     \      \-----------------------------------------'
@@ -99,9 +99,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  *            `-----------------------------------'           '------''---------------------------'
  */
 [_RAISE] = LAYOUT(
-  _______, _______, _______, _______, _______, _______,                       _______, _______ , _______, _______,  _______ , _______,
-  _______,  KC_INS, KC_PSCR,  KC_APP, XXXXXXX, XXXXXXX,                       KC_PGUP, KC_PRVWD,   KC_UP,KC_NXTWD,C(KC_BSPC), KC_BSPC,
-  _______, KC_LALT, KC_LCTL, KC_LSFT, XXXXXXX, KC_CAPS,                       KC_PGDN,  KC_LEFT, KC_DOWN, KC_RGHT, C(KC_DEL),  KC_DEL,
+  _______,   KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_F5,                         KC_F6,   KC_F7,   KC_F8,   KC_F9,  KC_F10,   KC_F11,
+  _______,  KC_INS, KC_PSCR,  KC_APP, XXXXXXX, XXXXXXX,                       KC_PGUP, KC_PRVWD,   KC_UP,KC_NXTWD,C(KC_BSPC),KC_BSPC,
+  _______, KC_LALT, KC_LCTL, KC_LSFT, XXXXXXX, KC_CAPS,                       KC_PGDN,  KC_LEFT, KC_DOWN, KC_RGHT, C(KC_DEL), KC_DEL,
   _______, C(NO_Z), C(NO_X), C(NO_C), C(NO_V), XXXXXXX, _______,     _______, XXXXXXX, KC_LSTRT, XXXXXXX, KC_LEND,   XXXXXXX, _______,
                 _______, _______, _______, _______, _______,             _______, _______, _______, _______, _______
 ),
@@ -121,7 +121,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 */
 [_ADJUST] = LAYOUT(
   XXXXXXX,XXXXXXX,XXXXXXX,   XXXXXXX, XXXXXXX, XXXXXXX,                       XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
-QK_BOOT,XXXXXXX,TG(_GAMING),NO_COLEMAK,XXXXXXX,XXXXXXX,                       XXXXXXX, XXXXXXX, KC_MPRV, KC_MNXT, XXXXXXX, XXXXXXX,
+QK_BOOT,XXXXXXX,TG(_GAMING),NO_COLEMAK,XXXXXXX,XXXXXXX,                       XXXXXXX, KC_MPRV, KC_MPLY, KC_MNXT, XXXXXXX, XXXXXXX,
   XXXXXXX,   NO_1,   NO_2,      NO_3,    NO_4,    NO_5,                          NO_6,    NO_7,    NO_8,    NO_9,    NO_0, XXXXXXX,
   DB_TOGG,XXXXXXX,XXXXXXX,   XXXXXXX, NO_COMM, XXXXXXX, XXXXXXX,     XXXXXXX, XXXXXXX,  NO_DOT, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
                 _______, _______, _______, _______, _______,             _______, _______, _______, _______, _______
